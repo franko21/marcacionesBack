@@ -13,11 +13,11 @@ public interface IPERSONNEL_EMPLOYEEDao extends CrudRepository<PERSONNEL_EMPLOYE
 	
 
     @Query(value="SELECT emp.emp_code,emp.first_name,tra.emp_code,tra.emp_id,*"
-    		+ " FROM iclock_transaction tra JOIN personnel_employee emp ON tra.emp_id = emp.id WHERE tra.emp_code = :emp_code", nativeQuery=true)
+    		+ " FROM iclock_transaction tra JOIN personnel_employee emp ON tra.emp_id = emp.id WHERE tra.emp_code = :emp_code ORDER BY emp.first_name, tra.punch_time DESC", nativeQuery=true)
     List<String> findByCedEmp(@Param("emp_code") String emp_code);
     
     @Query(value="SELECT emp.emp_code,emp.first_name,tra.emp_code,tra.emp_id,*"
-    		+ " FROM iclock_transaction tra JOIN personnel_employee emp ON tra.emp_id = emp.id WHERE tra.punch_time BETWEEN :fechaI AND :fechaF", nativeQuery=true)
+    		+ " FROM iclock_transaction tra JOIN personnel_employee emp ON tra.emp_id = emp.id WHERE tra.punch_time BETWEEN :fechaI AND :fechaF ORDER BY emp.first_name, tra.punch_time DESC", nativeQuery=true)
     List<String> findByFechEmp(@Param("fechaI") String fechaI,@Param("fechaF") String fechaF);
 
 }

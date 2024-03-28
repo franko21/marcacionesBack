@@ -5,15 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.Entity.PERSONNEL_EMPLOYEE;
 import com.example.demo.Service.IPERSONNEL_EMPLOYEEService;
@@ -21,6 +13,7 @@ import com.example.demo.Service.IPERSONNEL_EMPLOYEEService;
 
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api")
 public class PERSONNEL_EMPLOYEERestController {
 
@@ -59,13 +52,13 @@ public class PERSONNEL_EMPLOYEERestController {
 	
 	@GetMapping("/personnelE/iclockT/{emp_code}")
     public ResponseEntity<List<String>> findByCedEmp(@PathVariable String emp_code) {
-        List<String> horario = personnelEService.findByCedEmp(emp_code);
-        return ResponseEntity.ok().body(horario);
+        List<String> marcaciones = personnelEService.findByCedEmp(emp_code);
+        return ResponseEntity.ok().body(marcaciones);
     }
-	
+
 	@GetMapping("/personnelE/iclockT/fecha/{fechaI}/{fechaF}")
     public ResponseEntity<List<String>> findByFechEmp(@PathVariable String fechaI,@PathVariable String fechaF) {
-        List<String> horario = personnelEService.findByFechEmp(fechaI,fechaF);
-        return ResponseEntity.ok().body(horario);
+        List<String> marcaciones = personnelEService.findByFechEmp(fechaI,fechaF);
+        return ResponseEntity.ok().body(marcaciones);
     }
 }
